@@ -43,8 +43,7 @@ def home():
 
             message = f"Order Confirmed: {item} for Table {table}"
 
-    return render_template("index.html", menu=menu, message=message, sales=total_sales, orders=orders)
-
+    return render_template("index.html", menu=menu, message=message or "", sales=total_sales or 0, orders=orders or [])
 
 # SIMPLE AI CHATBOT
 @app.route("/chat", methods=["POST"])

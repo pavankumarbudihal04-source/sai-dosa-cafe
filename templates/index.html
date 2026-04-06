@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Sai Dosa Cafe</title>
+    <style>
+        body {
+            font-family: Arial;
+            background: #f5f5f5;
+            text-align: center;
+        }
+        h1 {
+            background: orange;
+            padding: 10px;
+            color: white;
+        }
+        .box {
+            background: white;
+            padding: 20px;
+            margin: 20px;
+            border-radius: 10px;
+        }
+        button {
+            padding: 10px;
+            background: green;
+            color: white;
+            border: none;
+        }
+    </style>
+</head>
+<body>
+
+<h1>🍽 Sai Dosa Cafe</h1>
+
+<div class="box">
+    <h2>Menu</h2>
+    <form method="POST">
+        <select name="item">
+            {% for item, price in menu.items() %}
+            <option value="{{item}}">{{item}} - ₹{{price}}</option>
+            {% endfor %}
+        </select>
+
+        <br><br>
+
+        <input type="number" name="table" placeholder="Table Number" required>
+
+        <br><br>
+
+        <button type="submit">Order Now</button>
+    </form>
+
+    <p>{{message}}</p>
+</div>
+
+<div class="box">
+    <h2>Orders</h2>
+    {% for order in orders %}
+        <p>{{order.item}} - Table {{order.table}} - ₹{{order.price}}</p>
+    {% endfor %}
+</div>
+
+<div class="box">
+    <h2>Total Sales: ₹{{sales}}</h2>
+</div>
+
+<div class="box">
+    <h2>AI Chat</h2>
+    <form action="/chat" method="POST">
+        <input type="text" name="message" placeholder="Ask something">
+        <button type="submit">Ask</button>
+    </form>
+</div>
+
+</body>
+</html>
